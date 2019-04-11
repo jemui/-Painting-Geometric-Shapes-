@@ -38,16 +38,13 @@ class InputHandler {
         if(triangle == true && document.getElementById("tri").innerHTML == "true") {
             var shape = new Triangle(shader,ev.clientX, ev.clientY);
             this.scene.addGeometry(shape);
-            console.log("draw a triangle");
         } 
         else if(document.getElementById("sqr").innerHTML == "true") {
             var shape = new Square(shader,ev.clientX, ev.clientY);
             this.scene.addGeometry(shape);
-            console.log("draw a square");
         } else if(document.getElementById("cir").innerHTML == "true"){
             var shape = new Circle(shader,ev.clientX, ev.clientY);
             this.scene.addGeometry(shape);
-            console.log("draw a circle " + document.getElementById("segment").value);
         }
     }
 

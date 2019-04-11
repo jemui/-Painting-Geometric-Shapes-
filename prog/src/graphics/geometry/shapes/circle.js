@@ -32,6 +32,7 @@ class Circle extends Geometry {
       var y = (this.y/canvas.height)*-2+1;
       var z = 0.0;
 
+      console.log(numVert);
       var r = document.getElementById("size").value/15;
       var p = 6*Math.PI;
 
@@ -46,23 +47,6 @@ class Circle extends Geometry {
          var y2 = (Math.sin(theta)*r)+y;
          vertices.push( new Vertex(x2, y2,z));
       }
-
-      // Eliminates any gaps in triangle when there are less segments
-      for(var theta = delta; theta < p; theta+= delta) {
-         vertices.push(center);
-
-         var x2 = (Math.cos(theta)*r)+x;
-         var y2 = (Math.sin(theta)*r)+y;
-         vertices.push( new Vertex(x2, y2,z));
-      }
-      for(var theta = delta; theta < p; theta+= delta) {
-         vertices.push(center);
-
-         var x2 = (Math.cos(theta)*r)+x;
-         var y2 = (Math.sin(theta)*r)+y;
-         vertices.push( new Vertex(x2, y2,z));
-      }
-
       return vertices;
   }
 }

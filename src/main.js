@@ -1,4 +1,5 @@
 var shader = null;
+var triangle = true;
 
 function main() {
   // Retrieve the canvas from the HTML document
@@ -39,8 +40,39 @@ function clear() {
     
     renderer.render();
     console.log("clear");
-    
+   // console.log("triangle: " + triangle + " square: " + square + " circle: " + circle);
     //var gl = getWebGLContext(canvas);
     //gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
   }
+}
+
+function shape() {
+  document.getElementById("square").addEventListener("click", square);
+  document.getElementById("triangle").addEventListener("click", triangle);
+  document.getElementById("circle").addEventListener("click", circle);
+
+  function square() {
+    document.getElementById("sqr").innerHTML = "true";
+    document.getElementById("tri").innerHTML = "false";
+    document.getElementById("cir").innerHTML = "false";
+    console.log("square");
+   // console.log("triangle: " + triangle + " square: " + square + " circle: " + circle);
+  }
+
+  function triangle() {
+    document.getElementById("sqr").innerHTML = "false";
+    document.getElementById("tri").innerHTML = "true";
+    document.getElementById("cir").innerHTML = "false";
+    console.log("triangle");
+   // console.log("triangle: " + triangle + " square: " + square + " circle: " + circle);
+  }
+
+  function circle() {
+    document.getElementById("sqr").innerHTML = "false";
+    document.getElementById("tri").innerHTML = "false";
+    document.getElementById("cir").innerHTML = "true";
+    console.log("circle");
+  //    console.log("triangle: " + triangle + " square: " + square + " circle: " + circle);
+  }
+
 }

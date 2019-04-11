@@ -11,6 +11,8 @@
       <script src = "src/graphics/geometry/geometry.js"></script>
       <script src = "src/graphics/geometry/vertex.js"></script>
       <script src = "src/graphics/geometry/shapes/triangle.js"></script>
+      <script src = "src/graphics/geometry/shapes/circle.js"></script>
+      <script src = "src/graphics/geometry/shapes/square.js"></script>
 
       <!-- Include external libs -->
       <script src = "lib/webgl-utils.js"></script>
@@ -25,7 +27,7 @@
       <script src = "src/graphics/shaders/asg1.js"></script>
   </head>
 
-  <body onload = "main(), clear()">
+  <body onload = "main(), clear(), shape()">
     <canvas id="webgl" width="400" height="400">
       Please use a browser that supports "canvas"
     </canvas>
@@ -34,16 +36,22 @@
         <p id="canvas"></p>
 
         Drawing Mode:  <br>
-        <button id="square">Square</button>
-        <button id="triangle">Triangle</button>
-        <button id="circle">Circle</button> <br>
+        <button id="square">Square</button><p hidden id="sqr"></p>
+        <button id="triangle">Triangle</button><p hidden id="tri"></p>
+        <button id="circle">Circle</button> <br><p hidden id="cir"></p>
         
         <br>  Shape Color:   <br>
         <div class="slidecontainer">Red:
-          <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-          Green: <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-          Blue: <input type="range" min="1" max="100" value="50" class="slider" id="myRange">      
+          <input type="range" min="0" max="255" value="255" class="slider" id="red">
+          Green: <input type="range" min="0" max="255" value="0" class="slider" id="green">
+          Blue: <input type="range" min="0" max="255" value="0" class="slider" id="blue">      
         </div> 
+
+        <br>   
+          <div class="slidecontainer">Shape Size: 
+            <input type="range" min="1" max="15" value="5" class="slider" id="size">
+            (Circles) Segment Count: <input type="range" min="1" max="15" value="5" class="slider" id="segment">    
+          </div> 
 
       </p>
   </body>

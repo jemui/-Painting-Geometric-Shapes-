@@ -12,8 +12,10 @@ class Geometry {
    * @param {Shader} shader Shading object used to shade geometry
    * @returns {Geometry} Geomtric object created
    */
-  constructor(shader) {
+  constructor(shader, x, y) {
       this.shader = shader;
+      this.x = x;
+      this.y = y;
   }
 
   /**

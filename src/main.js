@@ -1,5 +1,4 @@
 var shader = null;
-var triangle = true;
 
 function main() {
   // Retrieve the canvas from the HTML document
@@ -19,11 +18,6 @@ function main() {
   // Initialize shader
   shader = new Shader(gl, ASG1_VSHADER, ASG1_FSHADER);
 
-  // 3 major variable types in glsl
-  // - attributes int
-  // - uniforms
-  // - varyings
-
   // Add attibutes
   shader.addAttribute("a_Position");
   shader.addAttribute("a_Color");
@@ -37,42 +31,34 @@ function clear() {
   document.getElementById("clear").addEventListener("click", clearCanvas);
 
   function clearCanvas() {
-    
-    renderer.render();
-    console.log("clear");
-   // console.log("triangle: " + triangle + " square: " + square + " circle: " + circle);
-    //var gl = getWebGLContext(canvas);
-    //gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
+    main();
   }
 }
 
 function shape() {
+  // Event listeners for buttons
   document.getElementById("square").addEventListener("click", square);
   document.getElementById("triangle").addEventListener("click", triangle);
   document.getElementById("circle").addEventListener("click", circle);
 
+  // Select square
   function square() {
     document.getElementById("sqr").innerHTML = "true";
     document.getElementById("tri").innerHTML = "false";
     document.getElementById("cir").innerHTML = "false";
-    console.log("square");
-   // console.log("triangle: " + triangle + " square: " + square + " circle: " + circle);
   }
 
+  // Select triangle
   function triangle() {
     document.getElementById("sqr").innerHTML = "false";
     document.getElementById("tri").innerHTML = "true";
     document.getElementById("cir").innerHTML = "false";
-    console.log("triangle");
-   // console.log("triangle: " + triangle + " square: " + square + " circle: " + circle);
   }
 
+  // Select circle
   function circle() {
     document.getElementById("sqr").innerHTML = "false";
     document.getElementById("tri").innerHTML = "false";
     document.getElementById("cir").innerHTML = "true";
-    console.log("circle");
-  //    console.log("triangle: " + triangle + " square: " + square + " circle: " + circle);
   }
-
 }

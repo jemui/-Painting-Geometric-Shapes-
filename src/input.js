@@ -1,4 +1,7 @@
 var _inputHandler = null;
+var triangle = true;
+var down = false;
+
 /**
  * Specifies a Input Handler. Used to parse input events from a HTML page.
  *
@@ -17,17 +20,21 @@ class InputHandler {
 
       // Mouse Events
       this.canvas.onmousedown = function(ev) { _inputHandler.click(ev) };
-  //    this.canvas.onmousemove = function(ev) { _inputHandler.move(ev)  };
+      this.canvas.onmousemove = function(ev) { _inputHandler.move(ev) };
+      this.canvas.onmouseup = function(ev) { _inputHandler.release(ev) };
     }
 
     /**
      * Function called upon mouse click.
+     * Draws a shape.
      */
     click(ev) {
         // Print x,y coordinates.
         console.log(ev.clientX, ev.clientY);
 
-        // Passes in mouse position to shape
+        down = true;
+
+        // Passes in mouse position to shapes
         if(triangle == true && document.getElementById("tri").innerHTML == "true") {
             var shape = new Triangle(shader,ev.clientX, ev.clientY);
             this.scene.addGeometry(shape);
@@ -42,40 +49,32 @@ class InputHandler {
             this.scene.addGeometry(shape);
             console.log("draw a circle " + document.getElementById("segment").value);
         }
-
-
-        
     }
 
     /**
-     * Function called upon mouse down and movement.
+     * Function called upon mouse up.
+     * Sets var (mouse) down to false. 
+     */
+    release(ev) {
+        down = false;
+    }
+
+    /**
+     * Function that draws shapes when mouse is down and moving
      */
      move(ev) {
-        var down = false;
-      //  document.addEventListener("mousedown", mouseDown(this.scene));
-        document.addEventListener("mouseup", mouseUp);
-
-        this.canvas.onmousedown = mouseDown(this.scene) ;
-
-        function mouseDown(scene) {
-          //  down = true;
-            if(document.getElementById("tri").innerHTML == "true") {
+        if(down == true) {
+            if(triangle == true && document.getElementById("tri").innerHTML == "true") {
                 var shape = new Triangle(shader,ev.clientX, ev.clientY);
-                scene.addGeometry(shape);
-                console.log("draw a triangle");
+                this.scene.addGeometry(shape);
             } 
-        }
-
-        function mouseUp() {
-            down = false;
-          //  console.log(down);
-        }
-
-
-        // this.canvas.onmousedown = function(ev) { move = true;
-        //     console.log(move);
-        // };
-      //  this.canvas.onmouseup = function(ev) { move = false; };
-       // console.log(move);
+            else if(document.getElementById("sqr").innerHTML == "true") {
+                var shape = new Square(shader,ev.clientX, ev.clientY);
+                this.scene.addGeometry(shape);
+            } else if(document.getElementById("cir").innerHTML == "true"){
+                var shape = new Circle(shader,ev.clientX, ev.clientY);
+                this.scene.addGeometry(shape);
+            }
+         }
      }
 }

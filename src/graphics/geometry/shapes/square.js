@@ -25,16 +25,18 @@ class Square extends Geometry {
   generateSquareVertices() {
       var vertices = []
 
+      // convert to gl coordinates
       var x = (this.x/canvas.width)*2-1;
       var y = (this.y/canvas.height)*-2+1;
-      // mouseX and mouseY
-      // replace 0.25 with shapesize
-      var vertex1 = new Vertex( x+0.25, y+0.25, 0.0);
-      var vertex2 = new Vertex( x-0.25, y+0.25 , 0.0);
-      var vertex3 = new Vertex( x-0.25, y-0.25, 0.0);
-      var vertex4 = new Vertex( x-0.25, y-0.25, 0.0);
-      var vertex5 = new Vertex( x+0.25, y-0.25, 0.0);
-      var vertex6 = new Vertex( x+0.25, y+0.25, 0.0);
+
+      var size = document.getElementById("size").value/15;
+
+      var vertex1 = new Vertex( x+size, y+size, 0.0);
+      var vertex2 = new Vertex( x-size, y+size , 0.0);
+      var vertex3 = new Vertex( x-size, y-size, 0.0);
+      var vertex4 = new Vertex( x-size, y-size, 0.0);
+      var vertex5 = new Vertex( x+size, y-size, 0.0);
+      var vertex6 = new Vertex( x+size, y+size, 0.0);
 
       vertices.push(vertex1);
       vertices.push(vertex2);

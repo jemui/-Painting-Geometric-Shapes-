@@ -20,7 +20,6 @@ class Geometry {
 
   /**
    * A callback used to modify a geometry every frame (60 typically).
-   Can change anything - position, color
    */
   render() {
     return

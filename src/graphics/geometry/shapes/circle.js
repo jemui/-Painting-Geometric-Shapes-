@@ -22,45 +22,46 @@ class Circle extends Geometry {
       this.interleaveVertices();
   }
 
+  // a circle consists of triangles 
   generateCircleVertices() {
       var vertices = []
+      var numVert = document.getElementById("segment").value;
 
-      //  document.getElementById("segment").value gets segments
-      var numVert =  document.getElementById("segment").value;
-      var doublePI = 2*Math.PI;
-
+      // Convert to gl coordinates 
       var x = (this.x/canvas.width)*2-1;
       var y = (this.y/canvas.height)*-2+1;
+      var z = 0.0;
 
-      var r = 0.25;
+      var r = document.getElementById("size").value/15;
+      var p = 6*Math.PI;
 
-      console.log("circle x: " +x);
-      //var center = new Vertex(x,y,0.0);
-      var center = new Vertex(x,y,0.0);
-      vertices.push(center);
+      var delta = (2*Math.PI) / numVert;
+      var center = new Vertex(x, y, 0.0);
 
-      var delta = 2*Math.PI / 32;
-    //   for (var theta = 0; theta <= 100; theta++) {
-    //       var xpos = new Vertex(center + r*Math.cos(doublePI/200), (center + r*Math.sin(doublePI/200)),0.0); 
-    //       vertices.push(xpos);
-    //   }
+      // Draw circle
+      for(var theta = 0; theta < p; theta+= delta) {
+         vertices.push(center);
 
-      for(var theta = 0; theta < 2*Math.PI; theta+= delta) {
-        //  var xpos = new Vertex(r*(Math.cos(doublePI/32)+x, r*Math.sin(doublePI/32)+y, 0.0));
-          var xpos = new Vertex (0.25 * Math.cos(theta) + x, 0.25 * Math.sin(theta) + y, 0);
-           // 0.25 = width, 0.15 = temp center;
+         var x2 = (Math.cos(theta)*r)+x;
+         var y2 = (Math.sin(theta)*r)+y;
+         vertices.push( new Vertex(x2, y2,z));
+      }
 
-          vertices.push(xpos);
-       
-       }
-      // mouseX and mouseY
-    //   var vertex1 = new Vertex(-0.25, -0.25, 0.0);
-    //   var vertex2 = new Vertex( 0.25, -0.25, 0.0);
-    //   var vertex3 = new Vertex( 0.0,   0.25, 0.0);
+      // Eliminates any gaps in triangle when there are less segments
+      for(var theta = delta; theta < p; theta+= delta) {
+         vertices.push(center);
 
-    //   vertices.push(vertex1);
-    //   vertices.push(vertex2);
-    //   vertices.push(vertex3);
+         var x2 = (Math.cos(theta)*r)+x;
+         var y2 = (Math.sin(theta)*r)+y;
+         vertices.push( new Vertex(x2, y2,z));
+      }
+      for(var theta = delta; theta < p; theta+= delta) {
+         vertices.push(center);
+
+         var x2 = (Math.cos(theta)*r)+x;
+         var y2 = (Math.sin(theta)*r)+y;
+         vertices.push( new Vertex(x2, y2,z));
+      }
 
       return vertices;
   }

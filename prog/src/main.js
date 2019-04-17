@@ -27,6 +27,7 @@ function main() {
   renderer.start();
 }
 
+// Clear the canvas when the "Clear Canvas button is pressed"
 function clear() {
   document.getElementById("clear").addEventListener("click", clearCanvas);
 

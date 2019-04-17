@@ -32,21 +32,30 @@ class Circle extends Geometry {
       var y = (this.y/canvas.height)*-2+1;
       var z = 0.0;
 
-      console.log(numVert);
+
       var r = document.getElementById("size").value/15;
       var p = 6*Math.PI;
 
       var delta = (2*Math.PI) / numVert;
-      var center = new Vertex(x, y, 0.0);
+      var center = new Vertex(x, y, z);
 
-      // Draw circle
+      console.log("center " + x + " " + y);
+      console.log(numVert);
+
+      // Draw circle 
       for(var theta = 0; theta < p; theta+= delta) {
-         vertices.push(center);
-
          var x2 = (Math.cos(theta)*r)+x;
          var y2 = (Math.sin(theta)*r)+y;
-         vertices.push( new Vertex(x2, y2,z));
+
+         var x3 = (Math.cos(theta+delta)*r)+x;
+         var y3 = (Math.sin(theta+delta)*r)+y;
+
+         vertices.push(center);
+         vertices.push( new Vertex(x2, y2, z));
+         vertices.push( new Vertex(x3, y3, z));
+     
       }
-      return vertices;
+
+       return vertices;
   }
 }

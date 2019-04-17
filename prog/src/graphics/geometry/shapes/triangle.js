@@ -43,13 +43,3 @@ class Triangle extends Geometry {
       return vertices;
   }
 }
-function normalize(x,y,z) {
-    var vec = []; 
-    var norm = Math.sqrt((x*x)+(y*y)+(z*z));
-
-    vec.push(x/norm);
-    vec.push(y/norm);
-    vec.push(z/norm);
-
-    return vec;
-}

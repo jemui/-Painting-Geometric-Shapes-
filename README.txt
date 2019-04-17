@@ -2,7 +2,6 @@ Jeanette Mui, jemui@ucsc.edu
 
 Assignment 1: Painting Geometric Shapes
 Paint web application that draws simple geometric shapes made out of triangles.
-Circles sometimes have gaps around the 9-17 segments range. 
 
 Files submitted: 
 circle.js
